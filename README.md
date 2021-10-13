@@ -1,70 +1,161 @@
-# Getting Started with Create React App
+# National Park Planner
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+The National Park Planner allows you to browse a list of National Parks and plan your trip. The app will include lodging, activities, and dining options. There will be a calendar feature to which you can add your trip details, and a summary of trip selections. The purpose of this app is to encourage users to get outside and explore the beauty of the National Park Service. 
 
-## Available Scripts
 
-In the project directory, you can run:
+## User Stories
 
-### `npm start`
+* As a user, I want to be able to create an account, so I can log in and use the app.
+* As a user, I want to be able to browse a listing of the National Parks. 
+* As a user, I want to be able to find and schedule lodging from a list of options at National Parks.
+* As a user, I want to be able to find and schedule dining reservations at National Parks. 
+* As a user, I want to be able to find and schedule activities at National Parks. 
+* As a user, I want to be able to add my plans to a calendar. 
+* As a user, I want to be able to view my choices in a trip summary. 
+* As a user, I want to be able to filter my views by National Park. 
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+## Models and Relationships
 
-### `npm test`
+### User
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+A `User` has many `Reservations`
 
-### `npm run build`
+* id
+* username
+* password_digest
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+### Reservations
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+A `Reservation` belongs to an `Activity`
+A `Reservation` belongs to a `Date`
+A `Reservation` belongs to a `User`
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+* id
+* name 
+* date_id
+* user_id
+* activity_id
 
-### `npm run eject`
+### Activities 
+An `Activity` has many `Dates`
+An `Activity` belongs to a `Park`
+An `Activity` has many `Reservations`
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+* id 
+* name 
+* park_id
+* category
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+### Parks 
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+A `Park` has many `Activities` 
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+* id
+* location
 
-## Learn More
+### Months
+A `Month` has many `Dates` 
+A `Month` has many `Days` through `Dates` 
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+* id
+* month
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+### Dates
+A `Date` belongs to a `Month`
+A `Date` belongs to a `Day`
+A `Date` has many `Reservations`
 
-### Code Splitting
+* id 
+* month_id
+* day_id
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+### Days 
+A `Day` has many `Dates`
+A `Day` has many `Months` through `Dates`
 
-### Analyzing the Bundle Size
+* id
+* day 
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+## API
 
-### Making a Progressive Web App
+### GET /users
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+Returns a list of all users. Response JSON looks like this:
 
-### Advanced Configuration
+```json
+{ 
+  id: 111,
+  username: "johndoe",
+  password_digest: "XXXXX",
+}
+```
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
+### GET /parks
 
-### Deployment
+Returns a list of all parks. Response JSON looks like this:
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
+```json
+{ 
+  id: 111,
+  name: "Yosemite",
+  activities: {
+        id: 54, 
+        name: "Hike to Half Dome",
+        category: "What to Do"
+        park_id: 111,
+        },
+}
+```
 
-### `npm run build` fails to minify
+### GET /reservations
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+Returns a list of all reservations. Response JSON looks like this:
+
+```json
+{ 
+   id: 5
+   date_id: 54
+   user_id: 3
+   activity_id: 35
+}
+```
+
+### POST /reservations 
+
+Creates a new reservation. Response JSON looks like this:
+
+```json
+{ 
+   id: 5
+   date_id: 54
+   user_id: 3
+   activity_id: 35
+}
+```
+
+### GET /dates
+
+Returns a list of all dates. Response JSON looks like this:
+
+```json
+{ 
+   id: 4
+   month_id: 1
+   day_id: 28
+}
+```
+
+## Wireframe / Mockup
+
+src/images/Home.png
+
+src/images/Activities.png
+
+src/images/Calendar.png
+
+
+
+
+
+
