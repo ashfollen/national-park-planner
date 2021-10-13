@@ -148,11 +148,11 @@ Returns a list of all dates. Response JSON looks like this:
 
 ## Wireframe / Mockup
 
-src/images/Home.png
+![Wireframe1](src/images/Home.png)
 
-src/images/Activities.png
+![Wireframe2](src/images/Activities.png)
 
-src/images/Calendar.png
+![Wireframe3](src/images/Calendar.png)
 
 
 
