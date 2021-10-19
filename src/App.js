@@ -1,24 +1,42 @@
-import logo from './logo.svg';
 import './App.css';
+import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
+import TestRoute from "./components/TestRoute"
 
 function App() {
+
+  const production = 'https://backend-national-park-planner.herokuapp.com';
+  const development = 'http://localhost:3000';
+  const url = (process.env.NODE_ENV ? production : development)
+
+  fetch(`${url}/users`, {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+      Accept: "application/json",
+    },
+    body: JSON.stringify({
+      user: {
+        username: "testingusername",
+        password: "testingpassword"
+      },
+    }),
+  })
+    .then((r) => r.json())
+    .then(console.log);
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Router basename={process.env.PUBLIC_URL}>
+      <div className="nav-bar">
+        <nav>
+          <Link to="/">TestRoute</Link>
+        </nav>
+      </div>
+      <Switch>
+        <Route exact path="/">
+          <TestRoute />
+        </Route>
+      </Switch>
+    </Router>
   );
 }
 
