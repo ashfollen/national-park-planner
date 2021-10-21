@@ -8,13 +8,16 @@ import ParksPage from "./components/ParksPage";
 
 function App() {
 
-  const [loggedIn, setLoggedIn] = useState(false)
-  const [user, setUser] = useState([])
-  const [parks, setParks] =useState([])
-
   const production = 'https://backend-national-park-planner.herokuapp.com';
   const development = 'http://localhost:3000';
   const url = (process.env.NODE_ENV ? production : development)
+
+  const [loggedIn, setLoggedIn] = useState(false)
+  const [user, setUser] = useState([])
+  const [parks, setParks] = useState([])
+  const [campgrounds, setCampgrounds] = useState([])
+  const [parkCampgrounds, setParkCampgrounds] = useState('')
+
 
   useEffect(() => {
     const parkAPIRoot = "https://developer.nps.gov/api/v1/parks?limit=465&";
@@ -26,6 +29,15 @@ function App() {
       setParks(response.data.data.filter((park) => 
       park.designation === 'National Park'))
     })
+  }, [])
+
+  useEffect(() => {
+    const campAPIRoot = "https://developer.nps.gov/api/v1/campgrounds?limit=642&";
+    const accessKey=process.env.REACT_APP_ACCESSKEY;
+
+    axios 
+    .get(`${campAPIRoot}api_key=${accessKey}`)
+    .then(response => setCampgrounds(response.data.data))
   }, [])
 
   useEffect(() => {
@@ -103,15 +115,16 @@ function App() {
       })
     }
   
-  
     function logout() {
       localStorage.clear()
       setUser(null)
       setLoggedIn(false)
     }
-  
-  
 
+    function viewCampgrounds(parkCode) {
+      setParkCampgrounds(campgrounds.filter((campground) => campground.parkCode === parkCode))
+    }
+  
   return (
     <div className="app">
       {loggedIn ? <>
@@ -128,7 +141,7 @@ function App() {
               <Home />
             </Route>
             <Route path="/parks-page">
-              <ParksPage parks={parks}/>
+              <ParksPage parks={parks} handleClick={viewCampgrounds} parkCampgrounds={parkCampgrounds}/>
             </Route>
           </Switch>
         </Router> 
