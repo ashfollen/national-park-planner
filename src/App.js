@@ -1,17 +1,32 @@
 import './App.css';
 import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
-import TestRoute from "./components/TestRoute";
-import Login from "./components/Login";
 import { useState, useEffect } from 'react';
+import axios from 'axios';
+import Home from "./components/Home";
+import Login from "./components/Login";
+import ParksPage from "./components/ParksPage";
 
 function App() {
 
   const [loggedIn, setLoggedIn] = useState(false)
   const [user, setUser] = useState([])
+  const [parks, setParks] =useState([])
 
   const production = 'https://backend-national-park-planner.herokuapp.com';
   const development = 'http://localhost:3000';
   const url = (process.env.NODE_ENV ? production : development)
+
+  useEffect(() => {
+    const parkAPIRoot = "https://developer.nps.gov/api/v1/parks?limit=465&";
+    const accessKey = process.env.REACT_APP_ACCESSKEY;
+
+    axios 
+    .get(`${parkAPIRoot}api_key=${accessKey}`)
+    .then(response => {
+      setParks(response.data.data.filter((park) => 
+      park.designation === 'National Park'))
+    })
+  }, [])
 
   useEffect(() => {
     const token = localStorage.getItem("jwt");
@@ -99,19 +114,25 @@ function App() {
 
   return (
     <div className="app">
-      {loggedIn ? 
+      {loggedIn ? <>
+        <button className="logout-button" onClick={logout}>Logout</button>
         <Router basename={process.env.PUBLIC_URL}>
-          <div className="nav-bar">
-            <nav>
-              <Link to="/">TestRoute</Link>
-            </nav>
+          <div className="select-page">
+              <nav>
+              <Link to="/">Home</Link>
+              <Link to="/parks-page">Parks</Link>
+              </nav>
           </div>
           <Switch>
             <Route exact path="/">
-              <TestRoute />
+              <Home />
+            </Route>
+            <Route path="/parks-page">
+              <ParksPage parks={parks}/>
             </Route>
           </Switch>
         </Router> 
+        </>
         :
         <Login login={login} signup={signup}/>
       }

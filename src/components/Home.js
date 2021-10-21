@@ -1,4 +1,4 @@
-function TestRoute() {
+function Home() {
     return (
         <div className="App">
             <h1>Hello TestRoute</h1>
@@ -7,4 +7,4 @@ function TestRoute() {
 }
 
 
-export default TestRoute;
+export default Home;
