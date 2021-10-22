@@ -1,5 +1,7 @@
 import './App.css';
 import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
+import DatePicker from "react-datepicker";
+import "react-datepicker/dist/react-datepicker.css";
 import { useState, useEffect } from 'react';
 import axios from 'axios';
 import Home from "./components/Home";
@@ -160,10 +162,10 @@ function App() {
           </div>
           <Switch>
             <Route exact path="/">
-              <Home />
+              <Home user={user}/>
             </Route>
             <Route path="/parks-page">
-              <ParksPage parks={parks} viewCampgrounds={viewCampgrounds} parkCampgrounds={parkCampgrounds} viewToDos={viewToDos}/>
+              <ParksPage parks={parks} viewCampgrounds={viewCampgrounds} viewToDos={viewToDos}/>
             </Route>
             <Route path="/campgrounds-page">
               <CampgroundsPage parkCampgrounds={parkCampgrounds} />

@@ -1,11 +1,12 @@
 import ParkCard from "./ParkCard";
 
-function ParksPage({parks, viewCampgrounds, parkCampgrounds, viewToDos}) {
+function ParksPage({parks, viewCampgrounds, viewToDos}) {
     return (
-        <>
-        {parks.map((park) => <ParkCard key={park.id} park={park} viewCampgrounds={viewCampgrounds} parkCampgrounds={parkCampgrounds} viewToDos={viewToDos} />)}
-            
-        </>
+        <div className="parks-page">
+            {parks.map((park) => 
+                <ParkCard key={park.id} park={park} viewCampgrounds={viewCampgrounds} viewToDos={viewToDos} />
+            )}    
+        </div>
     )
 }
 

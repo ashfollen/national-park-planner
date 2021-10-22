@@ -7,12 +7,11 @@ The National Park Planner allows you to browse a list of National Parks and plan
 
 * As a user, I want to be able to create an account, so I can log in and use the app.
 * As a user, I want to be able to browse a listing of the National Parks. 
+* As a user, I want to be able to search for a National Park. 
 * As a user, I want to be able to find and schedule lodging from a list of options at National Parks.
-* As a user, I want to be able to find and schedule dining reservations at National Parks. 
 * As a user, I want to be able to find and schedule activities at National Parks. 
 * As a user, I want to be able to add my plans to a calendar. 
 * As a user, I want to be able to view my choices in a trip summary. 
-* As a user, I want to be able to filter my views by National Park. 
 
 
 ## Models and Relationships
