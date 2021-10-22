@@ -5,6 +5,8 @@ import axios from 'axios';
 import Home from "./components/Home";
 import Login from "./components/Login";
 import ParksPage from "./components/ParksPage";
+import CampgroundsPage from "./components/CampgroundsPage";
+import ToDosPage from "./components/ToDosPage";
 
 function App() {
 
@@ -16,7 +18,9 @@ function App() {
   const [user, setUser] = useState([])
   const [parks, setParks] = useState([])
   const [campgrounds, setCampgrounds] = useState([])
-  const [parkCampgrounds, setParkCampgrounds] = useState('')
+  const [parkCampgrounds, setParkCampgrounds] = useState([])
+  const [toDos, setToDos] = useState([])
+  const [parkToDos, setParkToDos] = useState([])
 
 
   useEffect(() => {
@@ -38,6 +42,17 @@ function App() {
     axios 
     .get(`${campAPIRoot}api_key=${accessKey}`)
     .then(response => setCampgrounds(response.data.data))
+  }, [])
+
+  useEffect(() => {
+    const toDoAPIRoot = "https://developer.nps.gov/api/v1/thingstodo?limit=2500&";
+    const accessKey = process.env.REACT_APP_ACCESSKEY;
+
+    axios 
+    .get(`${toDoAPIRoot}api_key=${accessKey}`)
+    .then(response => { 
+      setToDos(response.data.data.filter((toDo) => toDo.relatedParks[0] !== undefined && toDo.relatedParks[0].designation === "National Park"))
+    })
   }, [])
 
   useEffect(() => {
@@ -122,7 +137,13 @@ function App() {
     }
 
     function viewCampgrounds(parkCode) {
+      console.log("VIEWCAMPGROUNDS FUNCTION")
       setParkCampgrounds(campgrounds.filter((campground) => campground.parkCode === parkCode))
+    }
+
+    function viewToDos(parkCode) {
+      console.log("VIEWTODOS FUNCTION")
+      setParkToDos(toDos.filter((toDo) => toDo.relatedParks[0].parkCode === parkCode))
     }
   
   return (
@@ -134,6 +155,7 @@ function App() {
               <nav>
               <Link to="/">Home</Link>
               <Link to="/parks-page">Parks</Link>
+              {/* <Link to="/campgrounds-page">Campgrounds</Link> */}
               </nav>
           </div>
           <Switch>
@@ -141,7 +163,13 @@ function App() {
               <Home />
             </Route>
             <Route path="/parks-page">
-              <ParksPage parks={parks} handleClick={viewCampgrounds} parkCampgrounds={parkCampgrounds}/>
+              <ParksPage parks={parks} viewCampgrounds={viewCampgrounds} parkCampgrounds={parkCampgrounds} viewToDos={viewToDos}/>
+            </Route>
+            <Route path="/campgrounds-page">
+              <CampgroundsPage parkCampgrounds={parkCampgrounds} />
+            </Route>
+            <Route path="/todos-page">
+              <ToDosPage parkToDos={parkToDos} />
             </Route>
           </Switch>
         </Router> 

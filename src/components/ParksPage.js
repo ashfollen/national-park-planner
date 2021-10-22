@@ -1,9 +1,9 @@
 import ParkCard from "./ParkCard";
 
-function ParksPage({parks, handleClick, parkCampgrounds}) {
+function ParksPage({parks, viewCampgrounds, parkCampgrounds, viewToDos}) {
     return (
         <>
-        {parks.map((park) => <ParkCard key={park.id} park={park} handleClick={handleClick} parkCampgrounds={parkCampgrounds} />)}
+        {parks.map((park) => <ParkCard key={park.id} park={park} viewCampgrounds={viewCampgrounds} parkCampgrounds={parkCampgrounds} viewToDos={viewToDos} />)}
             
         </>
     )
