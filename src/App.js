@@ -12,12 +12,14 @@ import ToDosPage from "./components/ToDosPage";
 
 function App() {
 
-  const production = 'https://backend-national-park-planner.herokuapp.com';
+  const production = 'https://backend-national-park-planner.herokuapp.com/';
   const development = 'http://localhost:3000';
   const url = (process.env.NODE_ENV ? production : development)
+  // const url = 'http://localhost:3000/'
+  console.log(process.env.NODE_ENV)
 
   const [loggedIn, setLoggedIn] = useState(false)
-  const [user, setUser] = useState([])
+  const [user, setUser] = useState({})
   const [parks, setParks] = useState([])
   const [campgrounds, setCampgrounds] = useState([])
   const [parkCampgrounds, setParkCampgrounds] = useState([])
@@ -61,7 +63,7 @@ function App() {
     const token = localStorage.getItem("jwt");
     console.log("token: " + token)
     
-    fetch(`${url}profile`, {
+    fetch(`${url}/profile`, {
       method: "GET",
       headers: {
         Authorization: `Bearer ${token}`,
@@ -71,6 +73,7 @@ function App() {
         response.json().then((data) => {
           setLoggedIn(true)
           setUser(data.user)
+          console.log("PROFILE", data.user)
         });
       } else {
         console.log("please log in")
@@ -78,6 +81,7 @@ function App() {
     });
   }, []);
 
+  
     function signup(username, password) {
       fetch(`${url}/users`, {
         method: "POST",
@@ -121,7 +125,8 @@ function App() {
       }).then((response) => {
         if (response.ok) {
           response.json().then((data) => {
-            console.log("hi" + data.jwt)
+            console.log(data.jwt)
+            console.log("USER:", data.user)
             setUser(data.user)
             setLoggedIn(true)
             localStorage.setItem("jwt", data.jwt);
