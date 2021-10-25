@@ -15,8 +15,6 @@ function App() {
   const production = 'https://backend-national-park-planner.herokuapp.com/';
   const development = 'http://localhost:3000';
   const url = (process.env.NODE_ENV ? production : development)
-  // const url = 'http://localhost:3000/'
-  console.log(process.env.NODE_ENV)
 
   const [loggedIn, setLoggedIn] = useState(false)
   const [user, setUser] = useState({})
@@ -63,7 +61,7 @@ function App() {
     const token = localStorage.getItem("jwt");
     console.log("token: " + token)
     
-    fetch(`${url}/profile`, {
+    fetch(`http://localhost:3000/profile`, {
       method: "GET",
       headers: {
         Authorization: `Bearer ${token}`,
@@ -83,7 +81,7 @@ function App() {
 
   
     function signup(username, password) {
-      fetch(`${url}/users`, {
+      fetch(`http://localhost:3000/users`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -110,7 +108,7 @@ function App() {
     }
   
     function login(username, password) {
-      fetch(`${url}/login`, {
+      fetch(`http://localhost:3000/login`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
