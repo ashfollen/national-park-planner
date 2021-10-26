@@ -12,12 +12,13 @@ import Login from "./components/Login";
 import ParksPage from "./components/ParksPage";
 import CampgroundsPage from "./components/CampgroundsPage";
 import ToDosPage from "./components/ToDosPage";
+import Itinerary from "./components/Itinerary";
 
 function App() {
 
   const production = 'https://backend-national-park-planner.herokuapp.com/';
   const development = 'http://localhost:3000';
-  const url = (process.env.NODE_ENV ? production : development)
+  const url = (process.env.NODE_ENV === "production" ? production : development)
 
   
   const [loggedIn, setLoggedIn] = useState(false)
@@ -158,23 +159,48 @@ function App() {
     }
 
     useEffect(() => {
-      fetch('/reservations')
+      const token = localStorage.getItem("jwt");
+
+      fetch(`http://localhost:3000/reservations`, {
+        method: "GET",
+        headers: {
+          Authorization: `Bearer ${token}`
+        },
+      })
       .then((resp) => resp.json())
       .then((data) => setReservations(data))
     }, [])
 
     function createReservation(resData) {
-      fetch('/reservations', {
+      const token = localStorage.getItem("jwt");
+      fetch(`http://localhost:3000/reservations`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
-          "Authorization": `Bearer ${localStorage.getItem("jwt")}`,
-          // Accept: "application/json",
+          "Authorization": `Bearer ${token}`,
+          Accept: "application/json",
         },
-        body: JSON.stringify({resData}),
+        body: JSON.stringify(resData),
       })      
     .then((resp) => resp.json())
-    .then(data => console.log("CREATE RES", data));
+    .then(data => {
+      console.log("CREATE RES", data)
+      setReservations([...reservations, data])
+    });
+    console.log("RESRVATIONS", reservations)
+  }
+
+  function deleteRes(id) {
+    const token = localStorage.getItem("jwt");
+    fetch(`http://localhost:3000/reservations/${id}`, {
+      method: "DELETE",
+      headers: {
+        "Content-Type": "application/json",
+        "Authorization": `Bearer ${token}`,
+        Accept: "application/json",
+      }
+    })
+    setReservations(reservations.filter((reservation) => reservation.id !== id))
   }
   
   return (
@@ -201,17 +227,19 @@ function App() {
               <CampgroundsPage parkCampgrounds={parkCampgrounds} user={user} handleResData={createReservation} />
             </Route>
             <Route path="/todos-page">
-              <ToDosPage parkToDos={parkToDos} />
+              <ToDosPage parkToDos={parkToDos} user={user} handleResData={createReservation} />
             </Route>
-            {/* <Route path="/calendar-page">
-              <Calendar
-                localizer={localizer}
-                events={reservations}
-                startAccessor="start"
-                endAccessor="end"
-                style={{ height: 500 }}
-              />
-            </Route> */}
+            <Route path="/calendar-page">
+              {/* <Calendar
+                // localizer={localizer}
+                // events={reservations}
+                // startAccessor="start"
+                // endAccessor="end"
+                // style={{ height: 500 }}
+                
+              /> */}
+              <Itinerary reservations={reservations} deleteRes={deleteRes} />
+            </Route>
           </Switch>
         </Router> 
         </>
