@@ -21,10 +21,6 @@ function ParksPage({parks, viewCampgrounds, viewToDos}) {
         console.log(e.target.value)
     }
 
-    // function searchList() {
-    //     <SearchParks filteredParks={filteredParks} />
-    // }
-
     return (
         <div>
         <h2>Search for a National Park</h2>

@@ -149,12 +149,10 @@ function App() {
     }
 
     function viewCampgrounds(parkCode) {
-      console.log("VIEWCAMPGROUNDS FUNCTION")
       setParkCampgrounds(campgrounds.filter((campground) => campground.parkCode === parkCode))
     }
 
     function viewToDos(parkCode) {
-      console.log("VIEWTODOS FUNCTION")
       setParkToDos(toDos.filter((toDo) => toDo.relatedParks[0].parkCode === parkCode))
     }
 
