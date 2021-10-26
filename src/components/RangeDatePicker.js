@@ -1,9 +1,23 @@
 import { useState } from "react";
 import DatePicker from "react-datepicker";
 
-function RangeDatePicker() {
+function RangeDatePicker({campground, user, handleResData}) {
     const [startDate, setStartDate] = useState(new Date());
     const [endDate, setEndDate] = useState(new Date());
+    const [resData, setResData] = useState({})
+
+    function renderResData() {
+        const newResData = {
+            name: `${campground.name}`,
+            category: "campground",
+            start: startDate,
+            end: endDate,
+            user_id: `${user.id}`,
+        }
+        setResData(newResData);
+        console.log(newResData);
+        handleResData(newResData);
+    }
 
     return(
         
@@ -25,6 +39,7 @@ function RangeDatePicker() {
                 minDate={startDate}
                 onChange={date => setEndDate(date)}
             />
+            <button onClick={renderResData}>Add to Itinerary</button>
    </div>
         
     )

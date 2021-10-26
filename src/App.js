@@ -4,18 +4,23 @@ import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import { useState, useEffect } from 'react';
 import axios from 'axios';
+import { Calendar, momentLocalizer } from "react-big-calendar";
+import moment from "moment";
+import "react-big-calendar/lib/css/react-big-calendar.css";
 import Home from "./components/Home";
 import Login from "./components/Login";
 import ParksPage from "./components/ParksPage";
 import CampgroundsPage from "./components/CampgroundsPage";
 import ToDosPage from "./components/ToDosPage";
+import Itinerary from "./components/Itinerary";
 
 function App() {
 
   const production = 'https://backend-national-park-planner.herokuapp.com/';
   const development = 'http://localhost:3000';
-  const url = (process.env.NODE_ENV ? production : development)
+  const url = (process.env.NODE_ENV === "production" ? production : development)
 
+  
   const [loggedIn, setLoggedIn] = useState(false)
   const [user, setUser] = useState({})
   const [parks, setParks] = useState([])
@@ -23,7 +28,9 @@ function App() {
   const [parkCampgrounds, setParkCampgrounds] = useState([])
   const [toDos, setToDos] = useState([])
   const [parkToDos, setParkToDos] = useState([])
+  const [reservations, setReservations] = useState([])
 
+  const localizer = momentLocalizer(moment);
 
   useEffect(() => {
     const parkAPIRoot = "https://developer.nps.gov/api/v1/parks?limit=465&";
@@ -150,6 +157,51 @@ function App() {
       console.log("VIEWTODOS FUNCTION")
       setParkToDos(toDos.filter((toDo) => toDo.relatedParks[0].parkCode === parkCode))
     }
+
+    useEffect(() => {
+      const token = localStorage.getItem("jwt");
+
+      fetch(`http://localhost:3000/reservations`, {
+        method: "GET",
+        headers: {
+          Authorization: `Bearer ${token}`
+        },
+      })
+      .then((resp) => resp.json())
+      .then((data) => setReservations(data))
+    }, [])
+
+    function createReservation(resData) {
+      const token = localStorage.getItem("jwt");
+      fetch(`http://localhost:3000/reservations`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          "Authorization": `Bearer ${token}`,
+          Accept: "application/json",
+        },
+        body: JSON.stringify(resData),
+      })      
+    .then((resp) => resp.json())
+    .then(data => {
+      console.log("CREATE RES", data)
+      setReservations([...reservations, data])
+    });
+    console.log("RESRVATIONS", reservations)
+  }
+
+  function deleteRes(id) {
+    const token = localStorage.getItem("jwt");
+    fetch(`http://localhost:3000/reservations/${id}`, {
+      method: "DELETE",
+      headers: {
+        "Content-Type": "application/json",
+        "Authorization": `Bearer ${token}`,
+        Accept: "application/json",
+      }
+    })
+    setReservations(reservations.filter((reservation) => reservation.id !== id))
+  }
   
   return (
     <div className="app">
@@ -160,6 +212,7 @@ function App() {
               <nav>
               <Link to="/">Home</Link>
               <Link to="/parks-page">Parks</Link>
+              <Link to="/calendar-page">Itinerary</Link>
               {/* <Link to="/campgrounds-page">Campgrounds</Link> */}
               </nav>
           </div>
@@ -171,10 +224,21 @@ function App() {
               <ParksPage parks={parks} viewCampgrounds={viewCampgrounds} viewToDos={viewToDos}/>
             </Route>
             <Route path="/campgrounds-page">
-              <CampgroundsPage parkCampgrounds={parkCampgrounds} />
+              <CampgroundsPage parkCampgrounds={parkCampgrounds} user={user} handleResData={createReservation} />
             </Route>
             <Route path="/todos-page">
-              <ToDosPage parkToDos={parkToDos} />
+              <ToDosPage parkToDos={parkToDos} user={user} handleResData={createReservation} />
+            </Route>
+            <Route path="/calendar-page">
+              {/* <Calendar
+                // localizer={localizer}
+                // events={reservations}
+                // startAccessor="start"
+                // endAccessor="end"
+                // style={{ height: 500 }}
+                
+              /> */}
+              <Itinerary reservations={reservations} deleteRes={deleteRes} />
             </Route>
           </Switch>
         </Router> 
