@@ -17,7 +17,7 @@ function App() {
 
   const production = 'https://backend-national-park-planner.herokuapp.com/';
   const development = 'http://localhost:3000';
-  const url = (process.env.NODE_ENV ? production : development)
+  const url = (process.env.NODE_ENV === "production" ? production : development)
 
   
   const [loggedIn, setLoggedIn] = useState(false)
@@ -67,7 +67,7 @@ function App() {
     const token = localStorage.getItem("jwt");
     console.log("token: " + token)
     
-    fetch(`http://localhost:3000/profile`, {
+    fetch(`${url}/api/v1/profile`, {
       method: "GET",
       headers: {
         Authorization: `Bearer ${token}`,
@@ -87,7 +87,7 @@ function App() {
 
   
     function signup(username, password) {
-      fetch(`http://localhost:3000/users`, {
+      fetch(`${url}/api/v1/users`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -114,7 +114,7 @@ function App() {
     }
   
     function login(username, password) {
-      fetch(`http://localhost:3000/login`, {
+      fetch(`${url}/api/v1/login`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -158,13 +158,13 @@ function App() {
     }
 
     useEffect(() => {
-      fetch('/reservations')
+      fetch(`${url}/api/v1/reservations`)
       .then((resp) => resp.json())
       .then((data) => setReservations(data))
     }, [])
 
     function createReservation(resData) {
-      fetch('/reservations', {
+      fetch(`${url}/api/v1/reservations`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
