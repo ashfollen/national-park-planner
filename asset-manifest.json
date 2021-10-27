@@ -1,19 +1,20 @@
 {
   "files": {
-    "main.css": "/national-park-planner/static/css/main.b3b33a96.chunk.css",
-    "main.js": "/national-park-planner/static/js/main.2ea4c5b7.chunk.js",
-    "main.js.map": "/national-park-planner/static/js/main.2ea4c5b7.chunk.js.map",
+    "main.css": "/national-park-planner/static/css/main.d807eb02.chunk.css",
+    "main.js": "/national-park-planner/static/js/main.c4162506.chunk.js",
+    "main.js.map": "/national-park-planner/static/js/main.c4162506.chunk.js.map",
     "runtime-main.js": "/national-park-planner/static/js/runtime-main.f6b66f38.js",
     "runtime-main.js.map": "/national-park-planner/static/js/runtime-main.f6b66f38.js.map",
     "static/css/2.ea118d70.chunk.css": "/national-park-planner/static/css/2.ea118d70.chunk.css",
-    "static/js/2.de5c9048.chunk.js": "/national-park-planner/static/js/2.de5c9048.chunk.js",
-    "static/js/2.de5c9048.chunk.js.map": "/national-park-planner/static/js/2.de5c9048.chunk.js.map",
+    "static/js/2.d6f00b65.chunk.js": "/national-park-planner/static/js/2.d6f00b65.chunk.js",
+    "static/js/2.d6f00b65.chunk.js.map": "/national-park-planner/static/js/2.d6f00b65.chunk.js.map",
     "static/js/3.679d712e.chunk.js": "/national-park-planner/static/js/3.679d712e.chunk.js",
     "static/js/3.679d712e.chunk.js.map": "/national-park-planner/static/js/3.679d712e.chunk.js.map",
     "index.html": "/national-park-planner/index.html",
     "static/css/2.ea118d70.chunk.css.map": "/national-park-planner/static/css/2.ea118d70.chunk.css.map",
-    "static/css/main.b3b33a96.chunk.css.map": "/national-park-planner/static/css/main.b3b33a96.chunk.css.map",
-    "static/js/2.de5c9048.chunk.js.LICENSE.txt": "/national-park-planner/static/js/2.de5c9048.chunk.js.LICENSE.txt",
+    "static/css/main.d807eb02.chunk.css.map": "/national-park-planner/static/css/main.d807eb02.chunk.css.map",
+    "static/js/2.d6f00b65.chunk.js.LICENSE.txt": "/national-park-planner/static/js/2.d6f00b65.chunk.js.LICENSE.txt",
+    "static/media/NPS-logo.0761c9c4.png": "/national-park-planner/static/media/NPS-logo.0761c9c4.png",
     "static/media/login.css": "/national-park-planner/static/media/rawlinson_medium-webfont.ccbeeea6.woff",
     "static/media/parks-collage.e8209b12.png": "/national-park-planner/static/media/parks-collage.e8209b12.png",
     "static/media/picnic-icon.13448af6.png": "/national-park-planner/static/media/picnic-icon.13448af6.png",
@@ -22,8 +23,8 @@
   "entrypoints": [
     "static/js/runtime-main.f6b66f38.js",
     "static/css/2.ea118d70.chunk.css",
-    "static/js/2.de5c9048.chunk.js",
-    "static/css/main.b3b33a96.chunk.css",
-    "static/js/main.2ea4c5b7.chunk.js"
+    "static/js/2.d6f00b65.chunk.js",
+    "static/css/main.d807eb02.chunk.css",
+    "static/js/main.c4162506.chunk.js"
   ]
 }
