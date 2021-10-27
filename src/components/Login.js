@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import zionbg from '../images/zion.jpeg'
 
 export default function Login({signup, login}) {
 
@@ -19,9 +20,12 @@ export default function Login({signup, login}) {
 
     return (
         <div className="login">
+                <img className="bg" src={zionbg} />
+                <div className="login-form">
                 <div className="title">
                     <h1>National Parks Planner</h1>
                 </div>
+                <div className="login-forms">
                 <form onSubmit={(e) => handleSubmitLogin(e)}>
                 <input
                     placeholder="username"
@@ -31,11 +35,11 @@ export default function Login({signup, login}) {
                 />
                 <input
                     placeholder="password"
-                    type="text"
+                    type="password"
                     value={password}
                     onChange={(e) => setPassword(e.target.value)}
                 />
-                <button type="submit">Login</button>
+                <button type="submit">LOGIN</button>
                 </form>
     
                 <form onSubmit={(e) => handleSubmitSignup(e)}>
@@ -47,13 +51,15 @@ export default function Login({signup, login}) {
                 />
                 <input
                     placeholder="password"
-                    type="text"
+                    type="password"
                     value={newPassword}
                     onChange={(e) => setNewPassword(e.target.value)}
                 />
                 
-                <button type="submit">Create Account</button>
+                <button type="submit">CREATE ACCOUNT</button>
                 </form>
+                </div>
+                </div>
             </div>
     )
 }

@@ -11,7 +11,7 @@ function Itinerary({reservations, deleteRes}) {
             <h2>Camping</h2>
            {cgRes.map((reservation) => <CGItinerary key={reservation.id} reservation={reservation} deleteRes={deleteRes} />)}
            <h2>To Do</h2>
-           {tdRes.map((reservation) => <TDItinerary key={reservation.id} reservation={reservation}/>)}
+           {tdRes.map((reservation) => <TDItinerary key={reservation.id} reservation={reservation}deleteRes={deleteRes} />)}
         </div>
     )
 }

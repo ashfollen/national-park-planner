@@ -1,18 +1,37 @@
 import './App.css';
+import './styling/home.css';
+import './styling/login.css';
+
 import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import { useState, useEffect } from 'react';
 import axios from 'axios';
-import { Calendar, momentLocalizer } from "react-big-calendar";
-import moment from "moment";
+//Calendar Imports 
+import { Calendar, dateFnsLocalizer } from "react-big-calendar";
+import format from "date-fns/format";
+import parse from "date-fns/parse";
+import startOfWeek from "date-fns/startOfWeek";
+import getDay from "date-fns/getDay";
 import "react-big-calendar/lib/css/react-big-calendar.css";
+//End of Calendar Imports
 import Home from "./components/Home";
 import Login from "./components/Login";
 import ParksPage from "./components/ParksPage";
 import CampgroundsPage from "./components/CampgroundsPage";
 import ToDosPage from "./components/ToDosPage";
 import Itinerary from "./components/Itinerary";
+
+const locales = {
+  "en-US": require("date-fns/locale/en-US") 
+}
+const localizer = dateFnsLocalizer({
+  format,
+  parse,
+  startOfWeek,
+  getDay,
+  locales
+})
 
 function App() {
 
@@ -30,7 +49,6 @@ function App() {
   const [parkToDos, setParkToDos] = useState([])
   const [reservations, setReservations] = useState([])
 
-  const localizer = momentLocalizer(moment);
 
   useEffect(() => {
     const parkAPIRoot = "https://developer.nps.gov/api/v1/parks?limit=465&";
@@ -165,9 +183,16 @@ function App() {
           Authorization: `Bearer ${token}`
         },
       })
-      .then((resp) => resp.json())
-      .then((data) => setReservations(data))
+      .then((resp) => {
+        if (resp.ok) {
+          resp.json()
+          .then((resp) => setReservations(resp)) 
+        } else {
+          console.log("please log in to access reservations")
+        }
+      })
     }, [])
+    console.log("AFTER FETCH", reservations)
 
     function createReservation(resData) {
       const token = localStorage.getItem("jwt");
@@ -185,7 +210,7 @@ function App() {
       console.log("CREATE RES", data)
       setReservations([...reservations, data])
     });
-    console.log("RESRVATIONS", reservations)
+    console.log("RESERVATIONS", reservations)
   }
 
   function deleteRes(id) {
@@ -208,10 +233,10 @@ function App() {
         <Router basename={process.env.PUBLIC_URL}>
           <div className="select-page">
               <nav>
-              <Link to="/">Home</Link>
-              <Link to="/parks-page">Parks</Link>
-              <Link to="/calendar-page">Itinerary</Link>
-              {/* <Link to="/campgrounds-page">Campgrounds</Link> */}
+                <Link to="/">Home</Link>
+                <Link to="/parks-page">Parks</Link>
+                <Link to="/itinerary-page">Itinerary</Link>
+                <Link to="/calendar-page">Calendar</Link>
               </nav>
           </div>
           <Switch>
@@ -219,7 +244,7 @@ function App() {
               <Home user={user}/>
             </Route>
             <Route path="/parks-page">
-              <ParksPage parks={parks} viewCampgrounds={viewCampgrounds} viewToDos={viewToDos}/>
+              <ParksPage parks={parks} viewCampgrounds={viewCampgrounds} viewToDos={viewToDos} />
             </Route>
             <Route path="/campgrounds-page">
               <CampgroundsPage parkCampgrounds={parkCampgrounds} user={user} handleResData={createReservation} />
@@ -227,16 +252,11 @@ function App() {
             <Route path="/todos-page">
               <ToDosPage parkToDos={parkToDos} user={user} handleResData={createReservation} />
             </Route>
+            <Route path="/itinerary-page">
+              <Itinerary reservations={reservations.filter((res) => res.user_id === user.id)} deleteRes={deleteRes} />
+            </Route>
             <Route path="/calendar-page">
-              {/* <Calendar
-                // localizer={localizer}
-                // events={reservations}
-                // startAccessor="start"
-                // endAccessor="end"
-                // style={{ height: 500 }}
-                
-              /> */}
-              <Itinerary reservations={reservations} deleteRes={deleteRes} />
+              <Calendar localizer={localizer} events={reservations} startAccessor="start" endAccessor="end" style={{height: 500, margin: "50px"}} />
             </Route>
           </Switch>
         </Router> 
