@@ -1,0 +1,40 @@
+@font-face {
+    font-family: 'rawlinsonmedium';
+    src: url('../fonts/Rawlinson-medium/rawlinson_medium-webfont.woff2') format('woff2'),
+         url('../fonts/Rawlinson-medium/rawlinson_medium-webfont.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+  
+  .begin-exploring {
+    text-align: center;
+    margin-top: 480px;
+    font-family: 'rawlinsonmedium';
+    text-decoration: none;
+    color: white;
+    font-size: 1.5em;
+    text-shadow: 2px 2px 4px #000000;
+  }
+
+  
+  .begin-exploring img {
+    /* width: 100%; 
+    height: auto; */
+    /* position: absolute; */
+  
+  }
+  
+  .begin-exploring .overlay-text { 
+    
+  }
+
+  img.home-img {
+    min-height: 100%;
+    min-width: 1080px;
+    width: 100%;
+    height: auto;
+    position: fixed;
+    top: 90;
+    left:0;
+    z-index: -1;
+  }

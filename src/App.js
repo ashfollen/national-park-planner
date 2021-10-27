@@ -21,6 +21,7 @@ import ParksPage from "./components/ParksPage";
 import CampgroundsPage from "./components/CampgroundsPage";
 import ToDosPage from "./components/ToDosPage";
 import Itinerary from "./components/Itinerary";
+import npslogo from "./images/NPS-logo.png";
 
 const locales = {
   "en-US": require("date-fns/locale/en-US") 
@@ -229,14 +230,15 @@ function App() {
   return (
     <div className="app">
       {loggedIn ? <>
-        <button className="logout-button" onClick={logout}>Logout</button>
         <Router basename={process.env.PUBLIC_URL}>
           <div className="select-page">
               <nav>
-                <Link to="/">Home</Link>
-                <Link to="/parks-page">Parks</Link>
-                <Link to="/itinerary-page">Itinerary</Link>
-                <Link to="/calendar-page">Calendar</Link>
+                <img className="nps-logo" src={npslogo} />
+                <Link to="/">home</Link>
+                <Link to="/parks-page">parks</Link>
+                <Link to="/itinerary-page">itinerary</Link>
+                <Link to="/calendar-page">calendar</Link>
+                <button className="logout-button" onClick={logout}>Logout</button>
               </nav>
           </div>
           <Switch>
