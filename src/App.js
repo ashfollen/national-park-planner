@@ -35,7 +35,7 @@ const localizer = dateFnsLocalizer({
 
 function App() {
 
-  const production = 'https://backend-national-park-planner.herokuapp.com/';
+  const production = 'https://backend-national-park-planner.herokuapp.com';
   const development = 'http://localhost:3000';
   const url = (process.env.NODE_ENV === "production" ? production : development)
 
@@ -86,7 +86,7 @@ function App() {
     const token = localStorage.getItem("jwt");
     console.log("token: " + token)
     
-    fetch(`http://localhost:3000/profile`, {
+    fetch(`${url}/profile`, {
       method: "GET",
       headers: {
         Authorization: `Bearer ${token}`,
@@ -106,7 +106,7 @@ function App() {
 
   
     function signup(username, password) {
-      fetch(`http://localhost:3000/users`, {
+      fetch(`${url}/users`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -133,7 +133,7 @@ function App() {
     }
   
     function login(username, password) {
-      fetch(`http://localhost:3000/login`, {
+      fetch(`${url}/login`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -177,7 +177,7 @@ function App() {
     useEffect(() => {
       const token = localStorage.getItem("jwt");
 
-      fetch(`http://localhost:3000/reservations`, {
+      fetch(`${url}/reservations`, {
         method: "GET",
         headers: {
           Authorization: `Bearer ${token}`
@@ -196,7 +196,7 @@ function App() {
 
     function createReservation(resData) {
       const token = localStorage.getItem("jwt");
-      fetch(`http://localhost:3000/reservations`, {
+      fetch(`${url}/reservations`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -215,7 +215,7 @@ function App() {
 
   function deleteRes(id) {
     const token = localStorage.getItem("jwt");
-    fetch(`http://localhost:3000/reservations/${id}`, {
+    fetch(`${url}/reservations/${id}`, {
       method: "DELETE",
       headers: {
         "Content-Type": "application/json",
