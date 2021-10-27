@@ -6,8 +6,8 @@ function CGItinerary({reservation, deleteRes}) {
 
     return (
         <>
-            <h2>{reservation.name} from {reservation.start} through {reservation.end}</h2>
-            <button id={reservation.id} onClick={handleDelete}>Cancel</button>
+            <h2>{reservation.title} from {reservation.start} through {reservation.end}</h2>
+            <button onClick={handleDelete}>Cancel</button>
         </>
     )
 }

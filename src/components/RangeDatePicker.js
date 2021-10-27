@@ -8,7 +8,7 @@ function RangeDatePicker({campground, user, handleResData}) {
 
     function renderResData() {
         const newResData = {
-            name: `${campground.name}`,
+            title: `${campground.name}`,
             category: "campground",
             start: startDate,
             end: endDate,

@@ -1,0 +1,108 @@
+@font-face {
+    font-family: 'national_parkthin';
+    src: url('../fonts/National-Park/nationalpark-thin-webfont.woff2') format('woff2'),
+         url('../fonts/National-Park/nationalpark-thin-webfont.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'national_parkregular';
+    src: url('../fonts/National-Park/nationalpark-regular-webfont.woff2') format('woff2'),
+         url('../fonts/National-Park/nationalpark-regular-webfont.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'national_parkoutline';
+    src: url('../fonts/National-Park/nationalpark-outline-webfont.woff2') format('woff2'),
+         url('../fonts/National-Park/nationalpark-outline-webfont.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'national_parkheavy';
+    src: url('../fonts/National-Park/nationalpark-heavy-webfont.woff2') format('woff2'),
+         url('../fonts/National-Park/nationalpark-heavy-webfont.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'rawlinsonmedium';
+    src: url('../fonts/Rawlinson-medium/rawlinson_medium-webfont.woff2') format('woff2'),
+         url('../fonts/Rawlinson-medium/rawlinson_medium-webfont.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+
+}
+
+img.bg {
+   min-height: 100%;
+   min-width: 1350px;
+   width: 100%;
+   height: auto;
+   position: fixed;
+   top: 0;
+   left:0;
+   z-index: -1;
+}
+
+div.login-form {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 400px;;
+    margin-bottom: auto;
+    width: 40%;
+    height: 10%;
+    text-align: center;
+    background: rgba(255, 255, 255, 0.5);
+    border-radius: 10px;
+    font-family: 'rawlinsonmedium';
+} 
+
+div.login-forms {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    /* font-family: 'national_parkthin'; */
+}
+
+.login-forms form {
+    display: flex;
+    flex-direction: column;
+    margin: 20px;
+    opacity: 1;
+}
+
+.login-form input {
+    margin-bottom: 2px;
+    font-family: 'national_parkregular';
+    padding-left: 5px;
+}
+
+.login-form button {
+    font-family: 'national_parkregular';
+    display:inline-block;
+    padding:0.5em 3em;
+    border:0.16em solid black;
+    /* margin:0 0.3em 0.3em 0; */
+    box-sizing: border-box;
+    text-decoration:none;
+    color: black;
+    text-align:center;
+    transition: all 0.15s;
+    background-color: transparent;
+}
+
+.login-form button:hover {
+    color: white;
+}
+
+.title h1 {
+    padding-top: 15px;
+}
+

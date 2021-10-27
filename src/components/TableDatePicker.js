@@ -7,7 +7,7 @@ function TableDatePicker({toDo, user, handleResData}) {
 
     function renderResData() {
         const newResData = {
-            name: `${toDo.title}`,
+            title: `${toDo.title}`,
             category: "to-do",
             start: date,
             end: date,
