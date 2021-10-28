@@ -1,6 +1,8 @@
 import ParkCard from "./ParkCard";
 import SearchParks from "./SearchParks";
 import { useState } from 'react';
+import { FaSearch } from 'react-icons/fa';
+import rmnp from '../images/sand-dunes.jpeg'
 
 function ParksPage({parks, viewCampgrounds, viewToDos}) {
     const [searchField, setSearchField] = useState("");
@@ -14,28 +16,34 @@ function ParksPage({parks, viewCampgrounds, viewToDos}) {
         .includes(searchField.toLowerCase())
         )}
     )
-    console.log(filteredParks)
-
+    
     function handleChange(e) {
         setSearchField(e.target.value)
         console.log(e.target.value)
     }
-
+    
     return (
-        <div>
-        <h2>Search for a National Park</h2>
-            <input
-                type="search"
-                placeholder="Search for a National Park"
-                onChange={handleChange}
+        <div className="page-body">
+            <img className="parks-bg" src={rmnp} />
+            <div className="search">
+                <FaSearch />
+                <input
+                    type="search"
+                    placeholder=" Search for a National Park"
+                    onChange={handleChange}
                 />
-            <SearchParks filteredParks={filteredParks} viewCampgrounds={viewCampgrounds} viewToDos={viewToDos}/>
+            </div>
+            <div className="results">
+                <SearchParks filteredParks={filteredParks} viewCampgrounds={viewCampgrounds} viewToDos={viewToDos}/>    
+            </div>
 
-        <div className="parks-page">
+            {/* <hr /> */}
+
+        {/* <div className="parks-page">
                 {parks.map((park) => 
                     <ParkCard key={park.id} park={park} viewCampgrounds={viewCampgrounds} viewToDos={viewToDos} />
                 )}
-                </div>    
+                </div>     */}
         </div>
     )
 }

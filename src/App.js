@@ -1,38 +1,41 @@
 import './App.css';
 import './styling/home.css';
 import './styling/login.css';
+import './styling/results.css';
+import './styling/calendar.css';
 
 import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import { useState, useEffect } from 'react';
 import axios from 'axios';
-//Calendar Imports 
-import { Calendar, dateFnsLocalizer } from "react-big-calendar";
-import format from "date-fns/format";
-import parse from "date-fns/parse";
-import startOfWeek from "date-fns/startOfWeek";
-import getDay from "date-fns/getDay";
-import "react-big-calendar/lib/css/react-big-calendar.css";
-//End of Calendar Imports
+
+// import { Calendar, dateFnsLocalizer } from "react-big-calendar";
+// import format from "date-fns/format";
+// import parse from "date-fns/parse";
+// import startOfWeek from "date-fns/startOfWeek";
+// import getDay from "date-fns/getDay";
+// import "react-big-calendar/lib/css/react-big-calendar.css";
+
 import Home from "./components/Home";
 import Login from "./components/Login";
 import ParksPage from "./components/ParksPage";
 import CampgroundsPage from "./components/CampgroundsPage";
 import ToDosPage from "./components/ToDosPage";
 import Itinerary from "./components/Itinerary";
+import CalendarPage from "./components/CalendarPage";
 import npslogo from "./images/NPS-logo.png";
 
-const locales = {
-  "en-US": require("date-fns/locale/en-US") 
-}
-const localizer = dateFnsLocalizer({
-  format,
-  parse,
-  startOfWeek,
-  getDay,
-  locales
-})
+// const locales = {
+//   "en-US": require("date-fns/locale/en-US") 
+// }
+// const localizer = dateFnsLocalizer({
+//   format,
+//   parse,
+//   startOfWeek,
+//   getDay,
+//   locales
+// })
 
 function App() {
 
@@ -258,7 +261,8 @@ function App() {
               <Itinerary reservations={reservations.filter((res) => res.user_id === user.id)} deleteRes={deleteRes} />
             </Route>
             <Route path="/calendar-page">
-              <Calendar localizer={localizer} events={reservations} startAccessor="start" endAccessor="end" style={{height: 500, margin: "50px"}} />
+              <CalendarPage reservations={reservations}/>
+              {/* <Calendar localizer={localizer} events={reservations} startAccessor="start" endAccessor="end" style={{height: 500, margin: "50px"}} /> */}
             </Route>
           </Switch>
         </Router> 

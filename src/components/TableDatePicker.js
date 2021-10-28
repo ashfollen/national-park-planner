@@ -1,5 +1,6 @@
 import { useState } from "react";
 import DatePicker from "react-datepicker";
+import { FaCalendarAlt } from 'react-icons/fa';
 
 function TableDatePicker({toDo, user, handleResData}) {
     const [date, setDate] = useState(new Date());
@@ -18,9 +19,11 @@ function TableDatePicker({toDo, user, handleResData}) {
         handleResData(newResData);
     }
     return(
-        <div>
-            <DatePicker selected={date} onChange={date => setDate(date)} />
-            <button onClick={renderResData}>Add to Itinerary</button>
+        <div className="schedule">
+            <div className="date-picker">  
+                <DatePicker selected={date} onChange={date => setDate(date)} />   
+            </div>
+            <h5 onClick={renderResData}><FaCalendarAlt /> Add to Itinerary</h5>
         </div>
     )
 }
