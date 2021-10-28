@@ -1,0 +1,161 @@
+@font-face {
+  font-family: 'rawlinsonmedium';
+  src: url('../fonts/Rawlinson-medium/rawlinson_medium-webfont.woff2') format('woff2'),
+       url('../fonts/Rawlinson-medium/rawlinson_medium-webfont.woff') format('woff');
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'national_parkthin';
+  src: url('../fonts/National-Park/nationalpark-thin-webfont.woff2') format('woff2'),
+       url('../fonts/National-Park/nationalpark-thin-webfont.woff') format('woff');
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'national_parkregular';
+  src: url('../fonts/National-Park/nationalpark-regular-webfont.woff2') format('woff2'),
+       url('../fonts/National-Park/nationalpark-regular-webfont.woff') format('woff');
+  font-weight: normal;
+  font-style: normal;
+}
+
+  img.parks-bg, img.cgs-bg, img.todos-bg, img.calendar-bg {
+    min-height: 100%;
+    min-width: 1366px;
+    width: 100%;
+    height: auto;
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: -1;
+  }
+
+  .search {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    height: 60px;
+  }
+
+  .search svg {
+    height: 30px;
+    width: auto;
+    color: white;
+    padding: 10px 20px;
+  }
+
+  .search input {
+    width: 200px;
+    height: 30px;
+    margin-right: 50px;
+    font-family: 'national_parkregular';
+    font-size: 1em;
+  }
+
+  .back {
+    margin: 15px;
+    font-family: 'rawlinsonmedium';
+    color: white; 
+    text-shadow: 2px 2px 4px #000000;
+  }
+
+  .back a {
+    text-decoration: none;
+    text-shadow: 2px 2px 4px #000000;
+  }
+
+  .back a:visited {
+    color: white;
+  }
+ 
+  .results {
+    display: flex;  
+    flex-wrap: wrap;
+    justify-content: space-around;  
+  }
+  
+  .card {
+    width: 400px;
+    border-style: solid;
+    border-width: 1px;
+    border-color: black;
+    background-color: white;
+    border-radius: 10px;
+    margin-top: 2%;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+  }
+
+  .content {
+    margin: 0 20px 20px 20px;
+  }
+
+  .content h2, h3  {
+    font-family: 'rawlinsonmedium';
+    margin-top: 5px;
+  }
+
+  .content h5 {
+    font-family: 'national_parkthin';
+    text-decoration: none;
+    font-size: 0.9em;
+  }
+
+  .content a {
+    text-decoration: none;
+    color: #213A1B;
+  }
+
+  .content a:hover, .content h5:hover {
+    text-decoration: none;
+    color: #56903A;
+    cursor: pointer;
+  }
+  
+  .content p {  
+    margin-top: 10px;
+    font-family: 'national_parkthin';
+  }
+
+  .links {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    margin-top: 10px;
+  }
+
+  .dates {
+    display: flex;
+    flex-direction: row;  
+    justify-content: space-around;
+    height: 80px; 
+  }
+
+  .date-picker {
+    margin: 10px 15px;
+    display: flex;
+    flex-direction: column;
+    align-content: space-between;
+  }
+
+  .date-picker input {
+    font-family: 'national_parkregular';
+  }
+
+  .schedule {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .schedule h5 {
+    display: flex;
+    justify-content: center;
+    width: 150px;
+    text-align: center;
+    /* margin-bottom: 20px; */
+  }

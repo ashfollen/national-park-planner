@@ -1,0 +1,9 @@
+.rbc-calendar {
+    background-color: white;
+    font-family: 'national_parkregular';
+  }
+
+  .rbc-event-content {
+      background-color: #213A1B;
+      border-color: #213A1B;
+  }

@@ -72,6 +72,7 @@
   text-align:center;
   transition: all 0.15s;
   background-color: transparent;
+  border-radius: 10px;
 }
 
 .logout-button:hover {
@@ -79,44 +80,51 @@
   text-shadow: 2px 2px 4px #000000;
 }
 
-.parks-page {
-  display: flex;  
-  flex-wrap: wrap;
-  justify-content: space-between;  
+.slider, .still {
+  position: relative;
+  height: 300px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
-.park-card {
+.image {
   width: 300px;
-  border-style: solid;
-  border-width: 1px;
-  border-color: black;
-  margin-top: 2%;
+  height: auto;
+  min-height: 200px;
+  max-height: 200px;
+  border-radius: 10px;
 }
 
-.cgs-page {
-  display: flex;  
-  flex-wrap: wrap;
-  justify-content: space-between;  
+.right-arrow {
+  position: absolute;
+  top: 50%;
+  right: 10px;
+  font-size: 1.5rem;
+  color: #000;
+  z-index: 10;
+  cursor: pointer;
+  user-select: none;
 }
 
-.cg-card {
-  width: 300px;
-  border-style: solid;
-  border-width: 1px;
-  border-color: black;
-  margin-top: 2%;
+.left-arrow {
+  position: absolute;
+  top: 50%;
+  left: 10px;
+  font-size: 1.5rem;
+  color: #000;
+  z-index: 10;
+  cursor: pointer;
+  user-select: none;
 }
 
-.todos-page {
-  display: flex;  
-  flex-wrap: wrap;
-  justify-content: space-between;  
+.slide {
+  opacity: 0;
+  transition-duration: 1s ease;
 }
 
-.todo-card {
-  width: 300px;
-  border-style: solid;
-  border-width: 1px;
-  border-color: black;
-  margin-top: 2%;
+.slide.active {
+  opacity: 1;
+  transition-duration: 1s;
+  transform: scale(1.08);
 }

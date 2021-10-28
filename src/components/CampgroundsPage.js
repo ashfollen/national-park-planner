@@ -1,27 +1,28 @@
 import CampgroundCard from "./CampgroundCard";
 import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
+import { FaBackward } from 'react-icons/fa';
+import grandcanyon from '../images/grand-canyon.jpg'
 
 function CampgroundsPage({parkCampgrounds, user, handleResData}) {
     
-    console.log("HOW MANY CGS", parkCampgrounds.length)
-    return(
-        <>
-            <Link to="/parks-page">
-                <div className="back-to-parks">
-                    
-                        <h2>Back to Parks</h2>
-                   
-                </div>
-            </Link>
-        <div className="cgs-page">
-            { parkCampgrounds.length > 0 ?
-            parkCampgrounds.map((campground) => 
-                <CampgroundCard key={campground.id} campground={campground} user={user} handleResData={handleResData} />
-            ) :
-            <h2>Sorry, no campgrounds at this park.</h2>
-            }       
+   
+    return (
+        <div className="page-body">
+            <img className="cgs-bg" src={grandcanyon} />
+            <div className="back">
+                <Link to="/parks-page">
+                    <h2><FaBackward /> Back to Parks</h2>      
+                </Link>
+            </div>
+            <div className="results">
+                { parkCampgrounds.length > 0 ?
+                    parkCampgrounds.map((campground) => 
+                    <CampgroundCard key={campground.id} campground={campground} user={user} handleResData={handleResData} addresses={campground.addresses}/>
+                    ) :
+                    <h2>Sorry, no campgrounds at this park.</h2>
+                }       
+            </div>
         </div>
-        </>
     )
 }
 
