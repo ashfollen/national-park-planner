@@ -22,7 +22,7 @@ function CalendarPage({reservations}
     return (
         <>
             <img className="calendar-bg" src={acadia} />
-            <Calendar localizer={localizer} events={reservations} startAccessor="start" endAccessor="end" style={{height: 500, margin: "50px"}} />
+            <Calendar localizer={localizer} events={reservations} startAccessor="start" endAccessor="end" style={{height: 650, margin: "50px"}} />
         </>
     )
 }
