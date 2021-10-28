@@ -128,3 +128,14 @@
   transition-duration: 1s;
   transform: scale(1.08);
 }
+
+img.parks-bg, img.cgs-bg, img.todos-bg, img.calendar-bg, img.itinerary-bg {
+  min-height: 100%;
+  min-width: 1366px;
+  width: 100%;
+  height: auto;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: -1;
+}

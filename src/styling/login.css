@@ -53,7 +53,7 @@ div.login-form {
     display: block;
     margin-left: auto;
     margin-right: auto;
-    margin-top: 400px;;
+    margin-top: 400px;
     margin-bottom: auto;
     width: 40%;
     height: 10%;
@@ -62,6 +62,10 @@ div.login-form {
     border-radius: 10px;
     font-family: 'rawlinsonmedium';
 } 
+
+/* .form {
+    width: 40px;
+} */
 
 div.login-forms {
     display: flex;
@@ -84,7 +88,7 @@ div.login-forms {
 }
 
 .login-form button {
-    font-family: 'national_parkregular';
+    font-family: 'rawlinsonmedium';
     display:inline-block;
     padding:0.5em 3em;
     border:0.16em solid black;
@@ -95,6 +99,7 @@ div.login-forms {
     text-align:center;
     transition: all 0.15s;
     background-color: transparent;
+    width: 220px;
 }
 
 .login-form button:hover {

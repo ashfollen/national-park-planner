@@ -3,6 +3,7 @@ import './styling/home.css';
 import './styling/login.css';
 import './styling/results.css';
 import './styling/calendar.css';
+import './styling/itinerary.css';
 
 import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
 import DatePicker from "react-datepicker";

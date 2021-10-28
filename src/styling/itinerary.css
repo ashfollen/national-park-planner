@@ -1,0 +1,83 @@
+@font-face {
+    font-family: 'rawlinsonmedium';
+    src: url('../fonts/Rawlinson-medium/rawlinson_medium-webfont.woff2') format('woff2'),
+         url('../fonts/Rawlinson-medium/rawlinson_medium-webfont.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+  }
+  
+  @font-face {
+    font-family: 'national_parkthin';
+    src: url('../fonts/National-Park/nationalpark-thin-webfont.woff2') format('woff2'),
+         url('../fonts/National-Park/nationalpark-thin-webfont.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+  }
+  
+  @font-face {
+    font-family: 'national_parkregular';
+    src: url('../fonts/National-Park/nationalpark-regular-webfont.woff2') format('woff2'),
+         url('../fonts/National-Park/nationalpark-regular-webfont.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+  }
+
+.page-divide {
+    display: flex;
+    flex-direction: column;
+}
+
+.no-content, .reservations {
+    height: 50vh;
+    color: white;
+    text-shadow: 2px 2px 4px #000000;
+}
+
+.reservations {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+}
+
+.camping-res, .todo-res {
+    width: 50vw;
+    text-align: center;
+}
+
+.reservations h2 {
+    font-family: 'rawlinsonmedium';
+}
+
+.reservations h3 {
+    font-family: 'national_parkregular';
+}
+
+.reservations h4 {
+    font-family: 'national_parkthin'
+}
+
+.reservations h5 {
+    color: #213A1B;
+}
+
+.reservations h5:hover {
+    color: #56903A;
+}
+
+.camp-items {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: baseline;
+}
+
+.title-date {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: baseline;
+}
+
+.title-date h3, .title-date h4, .camp-title-date h3, .camp-title-date h4{
+    margin: 5px;
+}

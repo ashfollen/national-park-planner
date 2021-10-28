@@ -1,3 +1,5 @@
+import { FaTrashAlt } from 'react-icons/fa';
+
 function CGItinerary({reservation, deleteRes}) {
     
     function handleDelete(id) {
@@ -5,10 +7,15 @@ function CGItinerary({reservation, deleteRes}) {
     }
 
     return (
-        <>
-            <h2>{reservation.title} from {reservation.start} through {reservation.end}</h2>
-            <button onClick={handleDelete}>Cancel</button>
-        </>
+        <div className="camp-items">
+            <div className="camp-title-date">
+                <h3>{reservation.title}</h3>
+                <h4>{reservation.start} through {reservation.end}</h4>
+            </div>
+            <div className="delete"> 
+                <h5 onClick={handleDelete}><FaTrashAlt /></h5>
+            </div>
+        </div>
     )
 }
 

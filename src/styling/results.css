@@ -22,16 +22,7 @@
   font-style: normal;
 }
 
-  img.parks-bg, img.cgs-bg, img.todos-bg, img.calendar-bg {
-    min-height: 100%;
-    min-width: 1366px;
-    width: 100%;
-    height: auto;
-    position: fixed;
-    top: 0;
-    left: 0;
-    z-index: -1;
-  }
+
 
   .search {
     display: flex;
@@ -94,7 +85,7 @@
     margin: 0 20px 20px 20px;
   }
 
-  .content h2, h3  {
+  .content h2, .content h3  {
     font-family: 'rawlinsonmedium';
     margin-top: 5px;
   }
