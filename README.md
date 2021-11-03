@@ -2,6 +2,8 @@
 
 The National Park Planner allows you to browse a list of National Parks and plan your trip. The app will include lodging, activities, and dining options. There will be a calendar feature to which you can add your trip details, and a summary of trip selections. The purpose of this app is to encourage users to get outside and explore the beauty of the National Park Service. 
 
+The backend repo can be found at https://github.com/ashfollen/backend-national-park-planner. 
+
 
 ## User Stories
 
@@ -26,55 +28,13 @@ A `User` has many `Reservations`
 
 ### Reservations
 
-A `Reservation` belongs to an `Activity`
-A `Reservation` belongs to a `Date`
 A `Reservation` belongs to a `User`
 
 * id
-* name 
-* date_id
+* title 
+* start
+* end
 * user_id
-* activity_id
-
-### Activities 
-An `Activity` has many `Dates`
-An `Activity` belongs to a `Park`
-An `Activity` has many `Reservations`
-
-* id 
-* name 
-* park_id
-* category
-
-### Parks 
-
-A `Park` has many `Activities` 
-
-* id
-* location
-
-### Months
-A `Month` has many `Dates` 
-A `Month` has many `Days` through `Dates` 
-
-* id
-* month
-
-### Dates
-A `Date` belongs to a `Month`
-A `Date` belongs to a `Day`
-A `Date` has many `Reservations`
-
-* id 
-* month_id
-* day_id
-
-### Days 
-A `Day` has many `Dates`
-A `Day` has many `Months` through `Dates`
-
-* id
-* day 
 
 ## API
 
@@ -92,58 +52,16 @@ Returns a list of all users. Response JSON looks like this:
 
 ### GET /parks
 
-Returns a list of all parks. Response JSON looks like this:
-
-```json
-{ 
-  id: 111,
-  name: "Yosemite",
-  activities: {
-        id: 54, 
-        name: "Hike to Half Dome",
-        category: "What to Do"
-        park_id: 111,
-        },
-}
-```
+Returns a list of all parks. 
 
 ### GET /reservations
 
-Returns a list of all reservations. Response JSON looks like this:
-
-```json
-{ 
-   id: 5
-   date_id: 54
-   user_id: 3
-   activity_id: 35
-}
-```
+Returns a list of all reservations. 
 
 ### POST /reservations 
 
-Creates a new reservation. Response JSON looks like this:
+Creates a new reservation. 
 
-```json
-{ 
-   id: 5
-   date_id: 54
-   user_id: 3
-   activity_id: 35
-}
-```
-
-### GET /dates
-
-Returns a list of all dates. Response JSON looks like this:
-
-```json
-{ 
-   id: 4
-   month_id: 1
-   day_id: 28
-}
-```
 
 ## Wireframe / Mockup
 
@@ -152,9 +70,4 @@ Returns a list of all dates. Response JSON looks like this:
 ![Wireframe2](src/images/Activities.png)
 
 ![Wireframe3](src/images/Calendar.png)
-
-
-
-
-
 
